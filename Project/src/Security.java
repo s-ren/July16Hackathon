@@ -11,8 +11,8 @@ public class Security{
 	public static ArrayList<Security> secs = new ArrayList<Security>();
 	
 	public String name;
-	public ArrayList<Object> sells;
-	public ArrayList<Object> buys;
+	public ArrayList<ArrayList> sells;
+	public ArrayList<ArrayList> buys;
 	
 	public static void init() {
 		secs.add(VALBZ);
@@ -21,10 +21,11 @@ public class Security{
 		secs.add(WFC);
 	}
 	
-	public Security(String n, ArrayList<Object> sell, ArrayList<Object> buy) {
+	public Security(String n, ArrayList<> sell, ArrayList<Object> buy) {
 		name = n;
 		sells = sell;
 		buys = buy;
+		System.out.println(this);
 	}
 	
 	@Override

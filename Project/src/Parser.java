@@ -25,7 +25,7 @@ public class Parser {
 	}
 	
 	private static String read(String fileName) throws IOException {
-		reader = new BufferedReader(new FileReader(fileName));
+		reader = new BufferedReader(new FileReader("./data/" + fileName));
 		String line = reader.readLine();
     reader.close();
     return line;
