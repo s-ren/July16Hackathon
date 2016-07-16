@@ -25,6 +25,11 @@ public class Trader
 	}
 	
 	public void simpleBuyBond() throws IOException{
+		HashMap<String, Object> variables = new HashMap<String, Object>();
+    variables.put("type", "hello");
+    variables.put("team", "RDFZFIFTEEN");
+    to_exchange.println(gson.toJson(variables));
+    
 		updateInfo();
    		to_exchange.println("ADD 0 BOND BUY 999 20");
 			to_exchange.println("ADD 1 BOND SELL 1001 20");
@@ -40,7 +45,7 @@ public class Trader
 				int toSell = new Double((double) sec.sells.get(0).get(0)).intValue() - 1;
 				if (toBuy >= toSell) continue;
 				
-				HashMap<String, Object> variables = new HashMap<String, Object>;
+				variables = new HashMap<String, Object>();
 	      variables.put("type", "add");
 	      variables.put("order_id", i);
 	      variables.put("symbol", sec.name);
@@ -49,7 +54,7 @@ public class Trader
 	      variables.put("symbol", 5);
 	      to_exchange.println(gson.toJson(variables));
 				i++;
-				variables = new HashMap<String, Object>;
+				variables = new HashMap<String, Object>();
 	      variables.put("type", "add");
 	      variables.put("order_id", i);
 	      variables.put("symbol", sec.name);
