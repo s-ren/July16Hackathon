@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Security{
 	public static Security BOND = null;
 	public static Security VALBZ = null;
@@ -8,10 +10,10 @@ public class Security{
 	public static Security XLF = null;
 	
 	public String name;
-	public double[][] sells;
-	public double[][] buys;
+	public ArrayList<Object> sells;
+	public ArrayList<Object> buys;
 	
-	public Security(String n, double[][] sell, double[][] buy) {
+	public Security(String n, ArrayList<Object> sell, ArrayList<Object> buy) {
 		name = n;
 		sells = sell;
 		buys = buy;

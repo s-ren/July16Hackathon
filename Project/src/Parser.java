@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.Map;
 
 import com.google.gson.Gson;
@@ -13,13 +14,13 @@ public class Parser {
 	public static void readSecurity(String name) throws IOException {
 		String line = read(name);
     Map<String, Object> sec = parse(line);
-    if (name.equals("BOND")) Security.BOND = new Security("BOND", (double[][]) sec.get("sell"), (double[][]) sec.get("buy"));
-    else if (name.equals("VALBZ")) Security.VALBZ = new Security("VALBZ", (double[][]) sec.get("sell"), (double[][]) sec.get("buy"));
-    else if (name.equals("VALE")) Security.VALE = new Security("VALE", (double[][]) sec.get("sell"), (double[][]) sec.get("buy"));
-    else if (name.equals("GS")) Security.GS = new Security("GS", (double[][]) sec.get("sell"), (double[][]) sec.get("buy"));
-    else if (name.equals("MS")) Security.MS = new Security("MS", (double[][]) sec.get("sell"), (double[][]) sec.get("buy"));
-    else if (name.equals("WFC")) Security.WFC = new Security("WFC", (double[][]) sec.get("sell"), (double[][]) sec.get("buy"));
-    else if (name.equals("XLF")) Security.XLF = new Security("XLF", (double[][]) sec.get("sell"), (double[][]) sec.get("buy"));
+    if (name.equals("BOND")) Security.BOND = new Security("BOND", (ArrayList<Object>) sec.get("sell"), (ArrayList<Object>) sec.get("buy"));
+    else if (name.equals("VALBZ")) Security.VALBZ = new Security("VALBZ", (ArrayList<Object>) sec.get("sell"), (ArrayList<Object>) sec.get("buy"));
+    else if (name.equals("VALE")) Security.VALE = new Security("VALE", (ArrayList<Object>) sec.get("sell"), (ArrayList<Object>) sec.get("buy"));
+    else if (name.equals("GS")) Security.GS = new Security("GS", (ArrayList<Object>) sec.get("sell"), (ArrayList<Object>) sec.get("buy"));
+    else if (name.equals("MS")) Security.MS = new Security("MS", (ArrayList<Object>) sec.get("sell"), (ArrayList<Object>) sec.get("buy"));
+    else if (name.equals("WFC")) Security.WFC = new Security("WFC", (ArrayList<Object>) sec.get("sell"), (ArrayList<Object>) sec.get("buy"));
+    else if (name.equals("XLF")) Security.XLF = new Security("XLF", (ArrayList<Object>) sec.get("sell"), (ArrayList<Object>) sec.get("buy"));
     else throw new IOException("invalid security name!");
 	}
 	
