@@ -8,6 +8,7 @@ public class Trader
 {
 	public PrintWriter to_exchange;
 	public BufferedReader from_exchange;
+	
 	public void simpleBuyBond() throws IOException{
 		for (int i = 0; i < 10; i++) {
 			Parser.readSecurity("BOND");
