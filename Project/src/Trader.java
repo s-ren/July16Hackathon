@@ -9,16 +9,28 @@ public class Trader
 	public PrintWriter to_exchange;
 	public BufferedReader from_exchange;
 	
+	public void updateInfo() throws IOException {
+		Parser.readSecurity("BOND");
+		Parser.readSecurity("VALBZ");
+		Parser.readSecurity("VALE");
+		Parser.readSecurity("GS");
+		Parser.readSecurity("MS");
+		Parser.readSecurity("WFC");
+		Parser.readSecurity("XLF");
+	}
+	
 	public void simpleBuyBond() throws IOException{
-			Parser.readSecurity("BOND");
-			Parser.readSecurity("VALBZ");
-			Parser.readSecurity("VALE");
-			Parser.readSecurity("GS");
-			Parser.readSecurity("MS");
-			Parser.readSecurity("WFC");
-			Parser.readSecurity("XLF");
-   			to_exchange.println("ADD 0 BOND BUY 999 50");
-			to_exchange.print;n("ADD 1 BOND SELL 1001 50)";
-		//to_exchange.println("ADD 1 BOND BUY 999 10");
+   		to_exchange.println("ADD 0 BOND BUY 999 20");
+			to_exchange.println("ADD 1 BOND SELL 1001 20");
+			int i = 2;
+			for (Security sec : Security.secs) {
+				int toBuy = (int) sec.buys.get(0) + 1;
+				int toSell = (int) sec.sells.get(0) - 1;
+				if (toBuy >= toSell) continue;
+				to_exchange.println("ADD " + i + " " + sec.name + " BUY " + toBuy + " 20");
+				i++;
+				to_exchange.println("ADD " + i + " " + sec.name + " SELL " + toSell + " 20");
+				i++;
+			}
 	}
 }
