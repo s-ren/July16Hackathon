@@ -24,7 +24,9 @@ public class Updater
 	}
 	public static void handleFile(String target){
 		String pattern = ".\"type\":\"book\".\"symbol\":\"(.*)\",.*.";
+		String tradePattern = ".\"type\":\"trade\".\"symbol\":\"(.*)\",.*.";
 		Pattern r = Pattern.compile(pattern);
+		Pattern r_t = Pattern.compile(pattern);
 		Matcher m = r.matcher(target);
 		if (m.find()){
 			writeToFile(m.group(1), target);	

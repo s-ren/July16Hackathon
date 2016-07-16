@@ -21,6 +21,6 @@ public class Security{
 	
 	@Override
 	public String toString() {
-		return "bond: " + name;
+		return "bond: " + name + "\n sells: " + sells + "\n buys " + buys + "\n";	
 	}
 }
