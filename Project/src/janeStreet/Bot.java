@@ -10,11 +10,16 @@ public class Bot
 	private BufferedReader from_exchange;
 	private PrintWriter to_exchange;
 	public void init(){
-        skt = new Socket("test-exch-rdfzfifteen", 20000);
-        from_exchange = new BufferedReader(new InputStreamReader(skt.getInputStream()));
-        to_exchange = new PrintWriter(skt.getOutputStream(), true);
+		try{
+        	skt = new Socket("test-exch-rdfzfifteen", 20000);
+        	from_exchange = new BufferedReader(new InputStreamReader(skt.getInputStream()));
+        	to_exchange = new PrintWriter(skt.getOutputStream(), true);
+		}
+		catch (Exception e){
+            e.printStackTrace(System.out);
+		}
 	}
-    public static void main(String[] args) throws Exception
+    public static void main(String[] args)
     {
         try
         {
