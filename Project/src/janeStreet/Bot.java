@@ -12,7 +12,7 @@ public class Bot
     {
         try
         {
-            Socket skt = new Socket("test-exch-teamname", 20000);
+            Socket skt = new Socket("test-exch-rdfzfifteen", 20000);
             BufferedReader from_exchange = new BufferedReader(new InputStreamReader(skt.getInputStream()));
             PrintWriter to_exchange = new PrintWriter(skt.getOutputStream(), true);
 
