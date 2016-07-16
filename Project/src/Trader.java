@@ -1,12 +1,16 @@
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
+
+import javax.management.Query;
+
+import com.google.gson.Gson;
 
 public class Trader
 {
+	Gson gson = new Gson();
 	public PrintWriter to_exchange;
 	public BufferedReader from_exchange;
 	
@@ -35,10 +39,25 @@ public class Trader
 				int toBuy = (int) sec.buys.get(0).get(0) + 1;
 				int toSell = (int) sec.sells.get(0).get(0) - 1;
 				if (toBuy >= toSell) continue;
-				to_exchange.println("ADD " + i + " " + sec.name + " BUY " + toBuy + " 20");
+				
+				HashMap<String, Object> variables = new HashMap<String, Object>;
+	      variables.put("type", "add");
+	      variables.put("order_id", i);
+	      variables.put("symbol", sec.name);
+	      variables.put("dir", "BUY");
+	      variables.put("price", toBuy);
+	      variables.put("symbol", 5);
+	      to_exchange.println(gson.toJson(variables));
 				i++;
-				to_exchange.println("ADD " + i + " " + sec.name + " SELL " + toSell + " 20");
-				i++;
+				variables = new HashMap<String, Object>;
+	      variables.put("type", "add");
+	      variables.put("order_id", i);
+	      variables.put("symbol", sec.name);
+	      variables.put("dir", "SELL");
+	      variables.put("price", toSell);
+	      variables.put("symbol", 5);
+	      to_exchange.println(gson.toJson(variables));
+	      i++;
 				System.out.println("Sent buy for " + sec.name + " at price " + toBuy + ";\n" + 
 						"Sent sell for " + sec.name + " at price " + toSell + ";\n");
 			}
