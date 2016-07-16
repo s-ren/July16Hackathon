@@ -1,2 +1,2 @@
-# July16Hackathon
-For Jane Street @ SF Hackathon
+#July16Hackathon
+TEAM RDFZ15
