@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.ArrayList;
 
 public class Trader
 {
@@ -24,10 +25,15 @@ public class Trader
    		to_exchange.println("ADD 0 BOND BUY 999 20");
 			to_exchange.println("ADD 1 BOND SELL 1001 20");
 			int i = 2;
-			for (Security sec : Security.secs) {
+			ArrayList<Security> secs = new ArrayList<>();
+			secs.add(Security.VALBZ);
+			secs.add(Security.GS);
+			secs.add(Security.MS);
+			secs.add(Security.WFC);
+			for (Security sec : secs) {
 				if (sec.buys.isEmpty() || sec.sells.isEmpty()) continue; 
-				int toBuy = (int) sec.buys.get(0) + 1;
-				int toSell = (int) sec.sells.get(0) - 1;
+				int toBuy = (int) sec.buys.get(0).get(0) + 1;
+				int toSell = (int) sec.sells.get(0).get(0) - 1;
 				if (toBuy >= toSell) continue;
 				to_exchange.println("ADD " + i + " " + sec.name + " BUY " + toBuy + " 20");
 				i++;
