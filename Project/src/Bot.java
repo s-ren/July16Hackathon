@@ -39,7 +39,6 @@ public class Bot
       {
 		Bot rdfz = new Bot();
 		rdfz.init();
-		Security.init();
 		Trader trader = new Trader();
 		trader.to_exchange = rdfz.to_exchange;	
 		trader.from_exchange = rdfz.from_exchange;	

@@ -20,6 +20,7 @@ public class Trader
 	}
 	
 	public void simpleBuyBond() throws IOException{
+		updateInfo();
    		to_exchange.println("ADD 0 BOND BUY 999 20");
 			to_exchange.println("ADD 1 BOND SELL 1001 20");
 			int i = 2;
