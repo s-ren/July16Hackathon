@@ -24,6 +24,7 @@ public class Trader
 			to_exchange.println("ADD 1 BOND SELL 1001 20");
 			int i = 2;
 			for (Security sec : Security.secs) {
+				if (sec.buys.isEmpty() || sec.sells.isEmpty()) continue; 
 				int toBuy = (int) sec.buys.get(0) + 1;
 				int toSell = (int) sec.sells.get(0) - 1;
 				if (toBuy >= toSell) continue;
@@ -31,6 +32,8 @@ public class Trader
 				i++;
 				to_exchange.println("ADD " + i + " " + sec.name + " SELL " + toSell + " 20");
 				i++;
+				System.out.println("Sent buy for " + sec.name + " at price " + toBuy + ";\n" + 
+						"Sent sell for " + sec.name + " at price " + toSell + ";\n");
 			}
 	}
 }
