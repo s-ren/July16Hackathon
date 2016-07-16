@@ -11,5 +11,6 @@
 			<attribute name="maven.scope" value="compile"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="src/gson-2.7.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
