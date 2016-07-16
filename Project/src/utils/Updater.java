@@ -37,7 +37,7 @@ public class Updater
 	}
 	public static void writeRelevent(String Content){
 		try{
-			PrintWriter writer = new PrintWriter("../data/relevent");
+			PrintWriter writer = new PrintWriter(new FileWriter("../data/relevent", true));
 			writer.println(Content);
 			writer.close();	
 		}

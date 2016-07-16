@@ -31,9 +31,9 @@ public class Trader
 			secs.add(Security.MS);
 			secs.add(Security.WFC);
 			for (Security sec : secs) {
-				if (sec.buys.isEmpty() || sec.sells.isEmpty()) continue; 
-				int toBuy = (int) sec.buys.get(0).get(0) + 1;
-				int toSell = (int) sec.sells.get(0).get(0) - 1;
+				if (sec.buys.isEmpty() || sec.sells.isEmpty()) continue;
+				int toBuy = new Double((double) sec.buys.get(0).get(0)).intValue() + 1;
+				int toSell = new Double((double) sec.sells.get(0).get(0)).intValue() - 1;
 				if (toBuy >= toSell) continue;
 				to_exchange.println("ADD " + i + " " + sec.name + " BUY " + toBuy + " 20");
 				i++;
