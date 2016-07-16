@@ -22,14 +22,46 @@ public class Updater
     }
 	
 	}
+	public static void writeTrade(String fileName, String Content){
+		try{
+			PrintWriter writer = new PrintWriter(new FileWriter(fileName + "_trade", true));
+			writer.println(Content);
+			writer.close();	
+			writeToFile(fileName + "_current_trade", Content);
+		}
+   		catch (Exception e)
+   		{
+         	e.printStackTrace(System.out);
+    	}
+	
+	}
+	public static void writeRelevent(String Content){
+		try{
+			PrintWriter writer = new PrintWriter("relevent");
+			writer.println(Content);
+			writer.close();	
+		}
+   		catch (Exception e)
+   		{
+         	e.printStackTrace(System.out);
+    	}
+	
+	}
 	public static void handleFile(String target){
 		String pattern = ".\"type\":\"book\".\"symbol\":\"(.*)\",.*.";
 		String tradePattern = ".\"type\":\"trade\".\"symbol\":\"(.*)\",.*.";
 		Pattern r = Pattern.compile(pattern);
-		Pattern r_t = Pattern.compile(pattern);
+		Pattern r_t = Pattern.compile(tradePattern);
 		Matcher m = r.matcher(target);
+		Matcher m_t = r_t.matcher(target);
 		if (m.find()){
 			writeToFile(m.group(1), target);	
+		}
+		else if (m_t.find()){
+			writeTrade(m_t.group(1), target);
+		}
+		else{
+			writeRelevent(target);
 		}
 	}
 	public static void main(String[] args){
