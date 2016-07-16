@@ -40,7 +40,7 @@ public class Trader
 				int toSell = new Double((double) sec.sells.get(0).get(0)).intValue() - 1;
 				if (toBuy >= toSell) continue;
 				
-				HashMap<String, Object> variables = new HashMap<String, Object>;
+				HashMap<String, Object> variables = new HashMap<String, Object>();
 	      variables.put("type", "add");
 	      variables.put("order_id", i);
 	      variables.put("symbol", sec.name);
@@ -49,7 +49,7 @@ public class Trader
 	      variables.put("symbol", 5);
 	      to_exchange.println(gson.toJson(variables));
 				i++;
-				variables = new HashMap<String, Object>;
+				variables = new HashMap<String, Object>();
 	      variables.put("type", "add");
 	      variables.put("order_id", i);
 	      variables.put("symbol", sec.name);
