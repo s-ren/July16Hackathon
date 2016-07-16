@@ -33,7 +33,7 @@ public class Bot
           e.printStackTrace(System.out);
       }
 	}
-    public static void main(String[] args)
+  public static void main(String[] args)
     {
       try
       {
@@ -43,7 +43,7 @@ public class Bot
 		trader.to_exchange = rdfz.to_exchange;	
 		trader.from_exchange = rdfz.from_exchange;	
 		trader.simpleBuyBond();
-		rdfz.print_loop(rdfz.from_exchange);
+		//rdfz.print_loop(rdfz.from_exchange);
 			
       }
       catch (Exception e)
