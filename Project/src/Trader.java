@@ -6,7 +6,9 @@ import java.net.Socket;
 public class Trader
 {
 	public PrintWriter to_exchange;
+	public BufferedReader from_exchange;
 	public void simpleBuyBond(){
+   		to_exchange.println("{'type': 'hello', 'team': 'RDFZFIFTEEN'}"); 
 		to_exchange.println("ADD 1 BOND BUY 999 10");
 	}
 }
