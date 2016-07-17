@@ -38,9 +38,8 @@ public class Bot
 		return new PrintWriter(skt.getOutputStream(), true);
 	}
 	public static String readFromServer() throws IOException{
-		//BufferedReader r = new BufferedReader(new InputStreamReader(skt.getInputStream()));
-		//return r.readLine().trim();		
-		return from_exchange.readLine().trim();
+		BufferedReader r = new BufferedReader(new InputStreamReader(skt.getInputStream()));
+		return r.readLine().trim();		
 	}
   public static void main(String[] args)
     {

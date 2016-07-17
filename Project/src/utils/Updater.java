@@ -72,10 +72,13 @@ public class Updater
 			PrintWriter to_exchange = new PrintWriter(skt.getOutputStream(), true);
 			to_exchange.println("{\"type\": \"hello\", \"team\": \"RDFZFIFTEEN\"}");
 			String reply = from_exchange.readLine().trim();
+			int count = 0;
 			while(reply != null){
-				System.out.println(reply);
+				count ++;
+				//System.out.println(reply);
 				handleFile(reply);
 				reply = from_exchange.readLine().trim();
+				if (count > 100) break;
 			}
 		}
       	catch (Exception e)

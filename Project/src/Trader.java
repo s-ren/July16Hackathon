@@ -2,6 +2,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.HashMap;
 
 import javax.management.Query;
@@ -39,11 +40,14 @@ public class Trader
 				if (sec.buys.isEmpty() || sec.sells.isEmpty()) continue;
 				int toBuy = new Double((double) sec.buys.get(0).get(0)).intValue() + 1;
 				int toSell = new Double((double) sec.sells.get(0).get(0)).intValue() - 1;
-				//if (toBuy >= toSell) continue;
+				if (toBuy >= toSell) continue;
 				
 				variables = new HashMap<String, Object>();
 	      variables.put("type", "add");
-	      variables.put("order_id", i);
+		Random rn = new Random();
+		int rannum = rn.nextInt(1000) + 1;
+	      //variables.put("order_id", i);
+	      variables.put("order_id", rannum);
 	      variables.put("symbol", sec.name);
 	      variables.put("dir", "BUY");
 	      variables.put("price", toBuy);
@@ -53,7 +57,9 @@ public class Trader
 				i++;
 				variables = new HashMap<String, Object>();
 	      variables.put("type", "add");
-	      variables.put("order_id", i);
+	      rannum = rn.nextInt(1000) + 1;
+	      //variables.put("order_id", i);
+	      variables.put("order_id", rannum);
 	      variables.put("symbol", sec.name);
 	      variables.put("dir", "SELL");
 	      variables.put("price", toSell);
