@@ -1,18 +1,12 @@
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import javax.management.Query;
 
 import com.google.gson.Gson;
 
 public class Trader
 {
 	Gson gson = new Gson();
-	public PrintWriter to_exchange;
-	public BufferedReader from_exchange;
 	
 	public void updateInfo() throws IOException {
 		Parser.readSecurity("BOND");
@@ -28,11 +22,11 @@ public class Trader
 		HashMap<String, Object> variables = new HashMap<String, Object>();
     variables.put("type", "hello");
     variables.put("team", "RDFZFIFTEEN");
-    to_exchange.println(gson.toJson(variables));
+    Bot.to_exchange.println(gson.toJson(variables));
     
 		updateInfo();
-   		to_exchange.println("ADD 0 BOND BUY 999 20");
-			to_exchange.println("ADD 1 BOND SELL 1001 20");
+			Bot.to_exchange.println("ADD 0 BOND BUY 999 20");
+			Bot.to_exchange.println("ADD 1 BOND SELL 1001 20");
 			int i = 2;
 			ArrayList<Security> secs = new ArrayList<>();
 			secs.add(Security.VALBZ);
@@ -52,7 +46,7 @@ public class Trader
 	      variables.put("dir", "BUY");
 	      variables.put("price", toBuy);
 	      variables.put("symbol", 5);
-	      to_exchange.println(gson.toJson(variables));
+	      Bot.to_exchange.println(gson.toJson(variables));
 				i++;
 				variables = new HashMap<String, Object>();
 	      variables.put("type", "add");
@@ -61,7 +55,7 @@ public class Trader
 	      variables.put("dir", "SELL");
 	      variables.put("price", toSell);
 	      variables.put("symbol", 5);
-	      to_exchange.println(gson.toJson(variables));
+	      Bot.to_exchange.println(gson.toJson(variables));
 	      i++;
 				System.out.println("Sent buy for " + sec.name + " at price " + toBuy + ";\n" + 
 						"Sent sell for " + sec.name + " at price " + toSell + ";\n");

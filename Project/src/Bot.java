@@ -3,12 +3,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-@SuppressWarnings("unused")
 public class Bot
 {
 	private Socket skt;
-	private BufferedReader from_exchange;
-	private PrintWriter to_exchange;
+	public static BufferedReader from_exchange;
+	public static PrintWriter to_exchange;
 	public void init(){
 		try{
         	skt = new Socket("test-exch-rdfzfifteen", 20000);
@@ -39,9 +38,8 @@ public class Bot
       {
 		Bot rdfz = new Bot();
 		rdfz.init();
+		
 		Trader trader = new Trader();
-		trader.to_exchange = rdfz.to_exchange;	
-		trader.from_exchange = rdfz.from_exchange;	
 		trader.simpleBuyBond();
 		//rdfz.print_loop(rdfz.from_exchange);
 			
