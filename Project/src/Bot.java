@@ -4,12 +4,15 @@ import java.io.PrintWriter;
 import java.io.*;
 import java.net.Socket;
 
-@SuppressWarnings("unused")
+import com.google.gson.Gson;
+
 public class Bot
 {
+	public static Gson gson = new Gson();
 	public static Socket skt;
 	public static BufferedReader from_exchange;
 	//private PrintWriter to_exchange;
+
 	public void init(){
 		try{
         	skt = new Socket("production", 25000);
@@ -47,6 +50,7 @@ public class Bot
       {
 		Bot rdfz = new Bot();
 		rdfz.init();
+		
 		Trader trader = new Trader();
 		trader.simpleBuyBond();
 		//rdfz.print_loop(rdfz.from_exchange);

@@ -1,5 +1,7 @@
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -31,7 +33,15 @@ public class Parser {
     return line;
 	}
 	
-	private static Map<String, Object> parse(String jsonStr) {
+	public static void write(String input, String fileName) throws IOException {
+		File file = new File(fileName);
+    FileWriter writer = new FileWriter(file); 
+    writer.write(input); 
+    writer.flush();
+    writer.close();
+	}
+	
+	public static Map<String, Object> parse(String jsonStr) {
 		Type typeOfObjectsList = new TypeToken<Map<String, Object>>() {}.getType();
 		Map<String, Object> out = new Gson().fromJson(jsonStr, typeOfObjectsList);
 		return out;
