@@ -1,18 +1,23 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.io.*;
 import java.net.Socket;
+
+import com.google.gson.Gson;
 
 public class Bot
 {
-	private Socket skt;
+	public static Gson gson = new Gson();
+	public static Socket skt;
 	public static BufferedReader from_exchange;
-	public static PrintWriter to_exchange;
+	//private PrintWriter to_exchange;
+
 	public void init(){
 		try{
-        	skt = new Socket("test-exch-rdfzfifteen", 20000);
+        	skt = new Socket("production", 25000);
         	from_exchange = new BufferedReader(new InputStreamReader(skt.getInputStream()));
-        	to_exchange = new PrintWriter(skt.getOutputStream(), true);
+        	//to_exchange = new PrintWriter(skt.getOutputStream(), true);
 		}
 		catch (Exception e){
             		e.printStackTrace(System.out);
@@ -31,6 +36,14 @@ public class Bot
       	{
           e.printStackTrace(System.out);
       }
+	}
+	public static PrintWriter getInputer() throws IOException{
+		return new PrintWriter(skt.getOutputStream(), true);
+	}
+	public static String readFromServer() throws IOException{
+		//BufferedReader r = new BufferedReader(new InputStreamReader(skt.getInputStream()));
+		//return r.readLine().trim();		
+		return from_exchange.readLine().trim();
 	}
   public static void main(String[] args)
     {
