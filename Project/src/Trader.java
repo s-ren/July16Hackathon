@@ -11,8 +11,6 @@ import com.google.gson.Gson;
 public class Trader
 {
 	Gson gson = new Gson();
-	public PrintWriter to_exchange;
-	public BufferedReader from_exchange;
 	
 	public void updateInfo() throws IOException {
 		Parser.readSecurity("BOND");
@@ -28,11 +26,9 @@ public class Trader
 		HashMap<String, Object> variables = new HashMap<String, Object>();
     variables.put("type", "hello");
     variables.put("team", "RDFZFIFTEEN");
-    to_exchange.println(gson.toJson(variables));
+    Bot.getInputer().println(gson.toJson(variables));
     
 		updateInfo();
-   		to_exchange.println("ADD 0 BOND BUY 999 20");
-			to_exchange.println("ADD 1 BOND SELL 1001 20");
 			int i = 2;
 			ArrayList<Security> secs = new ArrayList<>();
 			secs.add(Security.VALBZ);
@@ -43,7 +39,7 @@ public class Trader
 				if (sec.buys.isEmpty() || sec.sells.isEmpty()) continue;
 				int toBuy = new Double((double) sec.buys.get(0).get(0)).intValue() + 1;
 				int toSell = new Double((double) sec.sells.get(0).get(0)).intValue() - 1;
-				if (toBuy >= toSell) continue;
+				//if (toBuy >= toSell) continue;
 				
 				variables = new HashMap<String, Object>();
 	      variables.put("type", "add");
@@ -51,8 +47,9 @@ public class Trader
 	      variables.put("symbol", sec.name);
 	      variables.put("dir", "BUY");
 	      variables.put("price", toBuy);
-	      variables.put("symbol", 5);
-	      to_exchange.println(gson.toJson(variables));
+	      variables.put("size", 5);
+	      System.out.println(gson.toJson(variables));
+	      Bot.getInputer().println(gson.toJson(variables));
 				i++;
 				variables = new HashMap<String, Object>();
 	      variables.put("type", "add");
@@ -60,8 +57,10 @@ public class Trader
 	      variables.put("symbol", sec.name);
 	      variables.put("dir", "SELL");
 	      variables.put("price", toSell);
-	      variables.put("symbol", 5);
-	      to_exchange.println(gson.toJson(variables));
+	      variables.put("size", 5);
+	      System.out.println(gson.toJson(variables));
+	      Bot.getInputer().println(gson.toJson(variables));
+	      System.out.println(Bot.readFromServer());
 	      i++;
 				System.out.println("Sent buy for " + sec.name + " at price " + toBuy + ";\n" + 
 						"Sent sell for " + sec.name + " at price " + toSell + ";\n");
